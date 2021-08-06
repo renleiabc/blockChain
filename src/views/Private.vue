@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-07-28 17:31:16
  * @LastEditors: abc
- * @LastEditTime: 2021-08-05 19:07:52
+ * @LastEditTime: 2021-08-06 11:02:15
  * @Description: 私钥
 -->
 <template>
@@ -237,8 +237,6 @@ export default {
       let pk = keyPair.toWIF();
 
       console.log('private key = ' + pk);
-      console.log(this.uint8Array(keyPair.privateKey).length);
-      console.log(this.buf2hex(keyPair.privateKey.buffer));
       //  const privateKey = this.uint8Array(keyPair.privateKey);
       const key =
         '0c28fca386c7a227600b2fe50b7cae11ec86d3bf1fbe471be89827e19d72aa1d';
@@ -302,16 +300,6 @@ export default {
       console.log('signature = ' + encodedSignature);
       // 打印公钥以便验证签名:
       console.log('public key = ' + keyPair1.publicKey.toString('hex'));
-    },
-    uint8Array(uint8Array) {
-      return Array.prototype.map
-        .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
-        .join('');
-    },
-    buf2hex(buffer) {
-      return Array.prototype.map
-        .call(new Uint8Array(buffer), (x) => ('00' + x.toString(16)).slice(-2))
-        .join('');
     }
   }
 };

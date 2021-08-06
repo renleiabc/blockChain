@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-08-05 17:24:23
  * @LastEditors: abc
- * @LastEditTime: 2021-08-05 18:01:12
+ * @LastEditTime: 2021-08-06 16:29:11
  * @Description: 
 -->
 <template>
@@ -10,7 +10,11 @@
     <el-header>
       <div id="nav">
         <router-link to="/">私钥</router-link> |
-        <router-link to="/address">公钥和地址</router-link>
+        <router-link to="/address">公钥和地址</router-link>|
+        <router-link to="/signature">签名</router-link>|
+        <router-link to="/segwit">Segwit地址</router-link>|
+        <router-link to="/hd">HD钱包</router-link>|
+        <router-link to="/words">助记词</router-link>
       </div>
     </el-header>
     <el-main>
