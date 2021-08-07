@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-07-28 17:31:16
  * @LastEditors: abc
- * @LastEditTime: 2021-08-06 16:28:44
+ * @LastEditTime: 2021-08-07 18:38:44
  * @Description:
  */
 import { createRouter, createWebHistory } from 'vue-router';
@@ -75,6 +75,18 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/words.vue'),
     meta: {
       title: '助记词'
+    }
+  },
+  {
+    path: '/balance',
+    name: 'Balance',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Balance.vue'),
+    meta: {
+      title: '余额'
     }
   }
 ];

@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-08-05 17:24:23
  * @LastEditors: abc
- * @LastEditTime: 2021-08-06 16:29:11
+ * @LastEditTime: 2021-08-07 18:39:21
  * @Description: 
 -->
 <template>
@@ -14,7 +14,8 @@
         <router-link to="/signature">签名</router-link>|
         <router-link to="/segwit">Segwit地址</router-link>|
         <router-link to="/hd">HD钱包</router-link>|
-        <router-link to="/words">助记词</router-link>
+        <router-link to="/words">助记词</router-link>|
+        <router-link to="/balance">余额</router-link>
       </div>
     </el-header>
     <el-main>
