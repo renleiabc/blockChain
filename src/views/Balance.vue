@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-08-07 18:37:09
  * @LastEditors: abc
- * @LastEditTime: 2021-08-07 19:14:17
+ * @LastEditTime: 2021-08-08 00:31:30
  * @Description: 余额
 -->
 <template>
@@ -35,6 +35,9 @@
     <div class="private-item">生成以1开头的地址：{{ address }}</div>
     <div class="private-item">生成以bc开头的地址：{{ addressBc }}</div>
     <div class="private-item">生成以3开头的地址：{{ address3 }}</div>
+    <div class="private-item">
+      比特币测试地址：mt4fp9zbXxTxV2KvqpbzHCDhPcWEx9Kr4o
+    </div>
   </div>
 </template>
 <script>
@@ -131,16 +134,38 @@ export default {
       // eslint-disable-next-line quotes
       console.log("pub m/44'/0'/0'/0/0: " + obj.address); // 1PwKkrF366RdTuYsS8KWEbGxfP4bikegcS
     };
+    const TESTNET = bitcoin.networks.testnet;
+    console.log(TESTNET);
+    const keyPair = bitcoin.ECPair.makeRandom({ network: TESTNET });
+    console.log(keyPair.publicKey);
+    const objTest = bitcoin.payments.p2pkh({
+      pubkey: keyPair.publicKey,
+      network: TESTNET
+    });
+    console.log(objTest.address);
+    // https://explorer.api.bitcoin.com/bch/v1/addr/1PoqKNokgoBFExPRsLjctHoDTAEZobCK9h
+    // https://explorer.api.bitcoin.com/bch/v1/txs/?address=1PoqKNokgoBFExPRsLjctHoDTAEZobCK9h&pageNum=0
     let addr = '1PoqKNokgoBFExPRsLjctHoDTAEZobCK9h';
-    let apiUrl = 'https://explorer.bitcoin.com/bch';
-    /*  // log unspent transactions
-    request.get(apiUrl + addr + '/utxo', (err, req, body) => {
-      console.log('utxo => ', JSON.parse(body));
-    }); */
+    let apiUrl = 'https://explorer.api.bitcoin.com/bch/v1';
+    let address1 = 'mt4fp9zbXxTxV2KvqpbzHCDhPcWEx9Kr4o';
+    // log unspent transactions
+    request.get(
+      `${apiUrl}/txs/?address=${addr}&pageNum=0`,
+      (err, req, body) => {
+        console.log('utxo => ', JSON.parse(body));
+      }
+    );
     // log balance
-    request.get(apiUrl + '/balance/' + addr, (err, req, body) => {
+    request.get(`${apiUrl}/addr/${addr}`, (err, req, body) => {
       console.log('balance => ', JSON.parse(body));
     });
+    // log balance
+    request.get(
+      `https://blockchain.info/rawaddr/${address1}`,
+      (err, req, body) => {
+        console.log('balance => ', JSON.parse(body));
+      }
+    );
     return {
       strWords,
       arrWords,
